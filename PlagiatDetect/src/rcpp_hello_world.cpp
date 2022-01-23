@@ -113,7 +113,7 @@ int cpp_plagiat_Levenshtein(std::string texte1, std::string texte2){
       LevDis.push_back(dist);
     }
 
-    int threshold = v1[i].size()/2;
+    double threshold = v1[i].size()/2;
 
     //double* ptr = &threshold;
 
