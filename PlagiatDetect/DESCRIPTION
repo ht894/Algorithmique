@@ -1,11 +1,11 @@
 Package: PlagiatDetect
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
+Title: Plagiat Detection
 Version: 1.0
 Date: 2022-01-22
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: One paragraph description of what the package does as one or more full sentences.
+Author: Cathia Le Hasif, Haotian Xie, Cheihbi Diop
+Maintainer: Haotian Xie <haotian.xie.72@gmail.com>
+Description: This package is used to detect plagiat in a text.
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.7)
 LinkingTo: Rcpp
