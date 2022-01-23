@@ -42,15 +42,15 @@ Levenshtein <- function(str1, str2){
 }
 
 ## Split texte -> vecteur de phrases
-split <- function(texte){
+my_split <- function(texte){ #  we name the function my_split to avoid the confusion
   tokens <- str_to_lower(tokenize_paragraphs(tokenize_sentences(texte)[[1]]))
   return(tokens)
 }
 
 ## Fonction plagiat
 plagiat_naif <- function(texte1, texte2){
-  texte1 <- split(texte1) # candidat
-  texte2 <- split(texte2) # référence
+  texte1 <- my_split(texte1) # candidat
+  texte2 <- my_split(texte2) # référence
   desired_length <- length(texte2)
   LevDis <- rep(NA, desired_length)
 
