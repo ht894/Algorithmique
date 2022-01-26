@@ -14,6 +14,43 @@ List rcpp_hello_world() {
 }
 
 
+/*
+ Algo Naïf BEGIN
+ */
+//' Algorithmes naïf distance de Levenshtein en C++
+//'
+//' @params 2 chaînes de caractères
+//' @return un entier représentant la distance entre les 2 chaînes de caractères
+//' @export
+// [[Rcpp::export]]
+int cpp_lev_naif(std::string texte1, std::string texte2){
+  std::string temp1;
+  std::string temp2;
+  if (texte1.empty()){
+    return texte2.length();
+  }
+
+  if (texte2.empty()){
+    return texte1.length();
+  }
+
+  int insert = cpp_lev_naif(texte1, texte2.substr(0, (texte2.length()-1)))+1; //+ coût insertion
+  int del = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2) + 1; // + coût délétion
+  temp1 = texte1.substr(0,texte1.length()-1);
+  temp2 = texte2.substr(0,texte2.length()-1);
+  int sub;
+  if (temp1 == temp2){
+    int sub = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2.substr(0,texte2.length()-1))+1;
+  }
+  if (temp1!=temp2){
+    int sub = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2.substr(0,texte2.length()-1));
+  }
+
+  return std::min(std::min(insert,del),sub);
+}
+/*
+ Algo Naïf END
+*/
 
 
 /*
@@ -117,44 +154,6 @@ int cpp_Levenshtein(std::string str1, std::string str2){
 
   return dist(n,m);
 }
-
-/*
- Algo Naïf BEGIN
- */
-//' Algorithmes naïf distance de Levenshtein en C++
-//'
-//' @params 2 chaînes de caractères
-//' @return un entier représentant la distance entre les 2 chaînes de caractères
-//' @export
-// [[Rcpp::export]]
-int cpp_lev_naif(std::string texte1, std::string texte2){
-  std::string temp1;
-  std::string temp2;
-  if (texte1.empty()){
-    return texte2.length();
-  }
-
-  if (texte2.empty()){
-    return texte1.length();
-  }
-
-  int insert = cpp_lev_naif(texte1, texte2.substr(0, (texte2.length()-1)))+1; //+ coût insertion
-  int del = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2) + 1; // + coût délétion
-  temp1 = texte1.substr(0,texte1.length()-1);
-  temp2 = texte2.substr(0,texte2.length()-1);
-  int sub;
-  if (temp1 == temp2){
-    int sub = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2.substr(0,texte2.length()-1))+1;
-  }
-  if (temp1!=temp2){
-    int sub = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2.substr(0,texte2.length()-1));
-  }
-
-  return std::min(std::min(insert,del),sub);
-}
-/*
- Algo Naïf END
-*/
 
 
 //' Fonction évaluant le pourcentage de plagiat en C++
