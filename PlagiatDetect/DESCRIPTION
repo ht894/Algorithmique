@@ -1,11 +1,11 @@
 Package: PlagiatDetect
 Type: Package
-Title: What the Package Does in One 'Title Case' Line
+Title: This is a plagiat detection package 
 Version: 1.0
 Date: 2022-01-22
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: One paragraph description of what the package does as one or more full sentences.
+Author: Haotian XIE, Cathia LE HASIF, Cheikhbi Diop
+Maintainer: Haotian XIE <haotian.xie.72@gmail.com>
+Description: This package is used to compare two text (one is candidat, another reference) and detect the plagiat in the candidat text. In this package we have R functions and rcpp functions.
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.7), rvest, tidyverse, corpus, rvest, tokenizers, stringr
 LinkingTo: Rcpp
