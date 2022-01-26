@@ -1,6 +1,7 @@
-
 #include <Rcpp.h>
 using namespace Rcpp;
+
+//' Algorithmes pour la détection de plagiat de texte en C++
 
 // [[Rcpp::export]]
 List rcpp_hello_world() {
@@ -12,9 +13,25 @@ List rcpp_hello_world() {
     return z ;
 }
 
+
 /*
-Algo naïf
+Algo Naïf
 */
+//' Algorithmes naïf distance de Levenshtein en C++
+//'
+//' @params 2 chaînes de caractères
+//' @return un entier représentant la distance entre les 2 chaînes de caractères
+//' @export
+
+
+/*
+Algo Optimisé
+*/
+//' Fonction changeant les majuscules en minuscules en C++
+//'
+//' @params 1 caractère
+//' @return 1 carcatère
+//' @export
 // [[Rcpp::export]]
 char cpp_to_lowercase(char c)
 {
@@ -26,10 +43,14 @@ char cpp_to_lowercase(char c)
 }
 
 
+//' Fonction transformant un texte en vecteur de phrases en C++
+//'
+//' @params 1 chaîne de caractères (longueur texte)
+//' @return un vecteur de chaînes de caractères (longueur phrases)
+//' @export
 // [[Rcpp::export]]
 std::vector<std::string> cpp_tokenizer(std::string texte)
 {
-  // The function cpp_tokenizer takes a texte as argument and tokenizes it.
   for (char &c: texte) {
     c=cpp_to_lowercase(c);
   }
@@ -48,6 +69,11 @@ std::vector<std::string> cpp_tokenizer(std::string texte)
 }
 
 
+//' Fonction pour accéder à la longueur d'une chaîne de caractères en C++
+//'
+//' @params 1 chaîne de caractères
+//' @return un entier représentant la longueur de la chaîne de caractères
+//' @export
 // [[Rcpp::export]]
 int cpp_get_length(std::string texte){
   std::vector<std::string> temp = cpp_tokenizer(texte);
@@ -56,6 +82,11 @@ int cpp_get_length(std::string texte){
 }
 
 
+//' Fonction distance de Levenshtein en C++
+//'
+//' @params 2 chaînes de caractères
+//' @return un entier représentation la distance entre les 2 chaînes de caractères
+//' @export
 // [[Rcpp::export]]
 int cpp_Levenshtein(std::string str1, std::string str2){
 
@@ -96,6 +127,11 @@ int cpp_Levenshtein(std::string str1, std::string str2){
 }
 
 
+//' Fonction évaluant le pourcentage de plagiat en C++
+//'
+//' @params 2 chaînes de caractères
+//' @return un float pourcentage de plagiat entre les 2 chaînes de caractères
+//' @export
 // [[Rcpp::export]]
 int cpp_plagiat_Levenshtein(std::string texte1, std::string texte2){
   std::vector<std::string> v1 = cpp_tokenizer(texte1);
@@ -129,9 +165,13 @@ int cpp_plagiat_Levenshtein(std::string texte1, std::string texte2){
 
 
 /*
-Algo amélioré
+Algo Smith-Waterman
 */
-
+//' Fonction créant une matrice de scores en C++
+//'
+//' @params 2 chaînes de caractères et 1 entier
+//' @return une matrice d'entiers
+//' @export
 // [[Rcpp::export]]
 NumericMatrix cpp_scores_matrix(std::string str1, std::string str2, int gap_cost){
 
@@ -166,7 +206,11 @@ NumericMatrix cpp_scores_matrix(std::string str1, std::string str2, int gap_cost
 }
 
 
-
+//' Fonction traceback en C++
+//'
+//' @params 1 matrice d'entiers et 1 chaîne de caractères
+//' @return 1 chaîne de caractères
+//' @export
 // [[Rcpp::export]]
 std::string cpp_Traceback(NumericMatrix scores_matrix, std::string str1){
 
@@ -234,6 +278,11 @@ std::string cpp_Traceback(NumericMatrix scores_matrix, std::string str1){
 }
 
 
+//' Algorithmes Smith-Waterman en C++
+//'
+//' @params 2 chaînes de caractères et 1 entier
+//' @return une liste contenant 1 matrice d'entiers et 1 chaîne de caractères
+//' @export
 // [[Rcpp::export]]
 List cpp_Smith_Waterman(std::string texte1, std::string texte2, int gap_cost){
   for (char &c: texte1){
@@ -252,6 +301,3 @@ List cpp_Smith_Waterman(std::string texte1, std::string texte2, int gap_cost){
 
   return z;
 }
-
-
-
