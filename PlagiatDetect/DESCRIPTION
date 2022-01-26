@@ -1,11 +1,11 @@
 Package: PlagiatDetect
 Type: Package
-Title: This is a plagiat detection package 
+Title: This is a plagiarism detection package 
 Version: 1.0
 Date: 2022-01-22
-Author: Haotian XIE, Cathia LE HASIF, Cheikhbi Diop
+Author: Haotian XIE, Cathia LE HASIF, Diop CHEIKHBI
 Maintainer: Haotian XIE <haotian.xie.72@gmail.com>
-Description: This package is used to compare two text (one is candidat, another reference) and detect the plagiat in the candidat text. In this package we have R functions and rcpp functions.
+Description: This package is used to compare two texts (one is `candidate`, the other `reference`) and detect the percentage of plagiarism of the candidate text. In this package we have R functions and rcpp functions.
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.7), rvest, tidyverse, corpus, rvest, tokenizers, stringr
 LinkingTo: Rcpp
