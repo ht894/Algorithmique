@@ -36,8 +36,8 @@ int cpp_lev_naif(std::string texte1, std::string texte2){
 
   int insert = cpp_lev_naif(texte1, texte2.substr(0, (texte2.length()-1)))+1; //+ coût insertion
   int del = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2) + 1; // + coût délétion
-  temp1 = texte1.substr(0,texte1.length()-1);
-  temp2 = texte2.substr(0,texte2.length()-1);
+  temp1 = texte1.back();
+  temp2 = texte2.back();
   int sub;
   if (temp1 == temp2){
     int sub = cpp_lev_naif(texte1.substr(0,texte1.length()-1), texte2.substr(0,texte2.length()-1))+1;
