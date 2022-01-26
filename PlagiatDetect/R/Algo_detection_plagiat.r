@@ -6,23 +6,43 @@
 # Distance de Levenshtein
 ## NAIF
 
+#lev <- function(a, b){
+  # si l'un des mot est vide, retourner la longueur de l'autre
+  # équivaut à insérer toutes les lettres de l'autre mot
+  #if (a==''){return (nchar(b))}
+  #if (b==''){return (nchar(a))}
+
+  # 3 transformations possibles
+  #insert <- lev(a, substr(b,1, nchar(b)-1)) + 1 # + coût insertion
+  #delete <- lev(substr(a,1,nchar(a)-1), b) + 1 # + coût délétion
+  #subst <- lev(substr(a,1,nchar(a)-1), substr(b,1,nchar(b)-1)) + (substr(a,1,nchar(a)-1) != substr(b,1,nchar(b)-1)) #  + coût si substitution
+
+  #return (min(insert, delete, subst))
+#}
+
 #' Fonction transformant un texte en vecteur de phrases en R
 #'
 #' @params 1 chaîne de caractères (longueur texte)
 #' @return un vecteur de chaînes de caractères (longueur phrases)
 #' @export
-lev <- function(a, b){
-  # si l'un des mot est vide, retourner la longueur de l'autre
-  # équivaut à insérer toutes les lettres de l'autre mot
+lev = function(a, b){
   if (a==''){return (nchar(b))}
   if (b==''){return (nchar(a))}
 
-  # 3 transformations possibles
-  insert <- lev(a, substr(b,1, nchar(b)-1)) + 1 # + coût insertion
-  delete <- lev(substr(a,1,nchar(a)-1), b) + 1 # + coût délétion
-  subst <- lev(substr(a,1,nchar(a)-1), substr(b,1,nchar(b)-1)) + (substr(a,1,nchar(a)-1) != substr(b,1,nchar(b)-1)) #  + coût si substitution
+  a_sauf_last_lettre = substr(a,1,nchar(a)-1)
+  b_sauf_last_lettre  = substr(b,1,nchar(b)-1)
+  last_lettre_a = substr(a, nchar(a), nchar(a))
+  last_lettre_b = substr(b, nchar(b), nchar(b))
 
-  return (min(insert, delete, subst))
+  un = lev(a_sauf_last_lettre , b) + 1
+
+  deux = lev(a, b_sauf_last_lettre ) + 1
+
+  trois = lev(a_sauf_last_lettre, b_sauf_last_lettre )
+
+  if (last_lettre_a!=last_lettre_b){trois=trois+1}
+
+  return( min(un, deux, trois) )
 }
 
 ## OPTIMISE
