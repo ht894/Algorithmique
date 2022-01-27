@@ -145,39 +145,7 @@ Scores_matrix <- function(str1, str2, gap_cost){
   return(S)
 }
 
-## Fonction de traceback
-Traceback <- function(scores_matrix){
-  p <- which(scores_mat == max(scores_mat), arr.ind = T)[1]
-  # ligne
-  q <- which(scores_mat == max(scores_mat), arr.ind = T)[2]
-  # colonne
 
-  index <- c() # vecteur des indices des mêmes caractères (lecture : <-)
-  index <- append(index, p)
-
-  while(scores_mat[p,q] > 0){
-    # si toutes les directions = 0 => 'diag' & fin
-    if (max(scores_mat[p-1,q], scores_mat[p,q-1], scores_mat[p-1,q-1]) == 0){p <- p-1; q <- q-1; index <- append(index, p); break}
-
-    # si 'up' = max
-    if (which.max(list(scores_mat[p-1,q], scores_mat[p,q-1], scores_mat[p-1,q-1])) == 1){p <- p-1; q <- q}
-
-    # si 'left' = max
-    if (which.max(list(scores_mat[p-1,q], scores_mat[p,q-1], scores_mat[p-1,q-1])) == 2){p <- p; q <- q-1}
-
-    # si 'diag' = max
-    if (which.max(list(scores_mat[p-1,q], scores_mat[p,q-1], scores_mat[p-1,q-1])) == 3){p <- p-1; q <- q-1}
-
-    index <- append(index, p)
-  }
-
-  sequence <- c() # vecteur de la séquence similaire
-  for (i in index[length(index):1]){ # lire les indices de droite à gauche
-    sequence <- append(sequence, str1[i])
-  }
-
-  return(sequence)
-}
 
 # fonction traceback pour retrouver la s?quence similaire
 Traceback <- function(scores_matrix, str1){
