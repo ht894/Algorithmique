@@ -105,7 +105,7 @@ my_split <- function(texte){
 #' @params 2 chaînes de caractères
 #' @return un taux de plagiat en pourcentage
 #' @export
-plagiat_naif <- function(texte1, texte2){
+plagiat <- function(texte1, texte2){
   texte1 <- my_split(texte1) # candidat
   texte2 <- my_split(texte2) # référence
   desired_length <- length(texte2)
