@@ -16,7 +16,7 @@ List rcpp_hello_world() {
 
 /*
  Algo Naïf BEGIN
- */
+
 //' Algorithmes naïf distance de Levenshtein en C++
 //'
 //' @params 2 chaînes de caractères
@@ -48,7 +48,7 @@ int cpp_lev_naif(std::string texte1, std::string texte2){
 
   return std::min(std::min(insert,del),sub);
 }
-/*
+
  Algo Naïf END
 */
 
