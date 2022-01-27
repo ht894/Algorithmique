@@ -224,7 +224,7 @@ Smith_Waterman <- function(str1, str2, gap_cost = -1){
   scores_mat <- Scores_matrix(str1, str2, gap_cost)
 
   # Séquence
-  sequence <- Traceback(scores_mat)
+  sequence <- Traceback(scores_mat,str1)
 
   return(list(matrix_scores = scores_mat, sequence = sequence))
 }
